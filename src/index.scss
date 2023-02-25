@@ -39,46 +39,7 @@ header {
 
 
 
-.card {
-  width: 220px;
-  border: 1px solid #F3F3F3;
-  border-radius: 40px;
-  padding: 30px;
-  margin: 0 20px;
-  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
-  cursor: pointer;
 
-  &:hover {
-    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.07);
-    transform: translateY(-5px);
-  }
-
-  .favorite {
-    position: absolute;
-    cursor: pointer;
-  }
-
-  .price_add{
-    width: 150px;
-  }
-
-  span {
-    font-size: 11px;
-    opacity: 0.5;
-    text-transform: uppercase;
-    margin-bottom: 2px;
-  }
-
-  b {
-    font-size: 14px;
-  }
-
-  h5 {
-    font-weight: 400;
-    font-size: 14px;
-    padding: 15px 0;
-  }
-}
 
 .button {
   width: 32px;
