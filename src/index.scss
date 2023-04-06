@@ -37,9 +37,40 @@ header {
   }
 }
 
+.greenButtonGoBack {
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 18px;
+  background: #9DD558;
+  border-radius: 18px;
+  border: none;
+  cursor: pointer;
+  width: 245px;
+  margin-top: 20px;
 
 
+  &:hover {
+    img {
+      transform: rotate(180deg) translateX(3px);
+    }
 
+    background: lighten(#9DD558, 5%);
+  }
+
+  &:active {
+    background: darken(#9DD558, 5%);
+
+  }
+
+  img {
+    position: relative;
+    top: 1px;
+    transform: rotate(180deg);
+    margin-right: 15px;
+    transition: transform 0.1s ease-in-out;
+  }
+}
 
 .button {
   width: 32px;
@@ -64,8 +95,6 @@ input {
 }
 
 
-
-
 .overlay {
   position: absolute;
   left: 0;
@@ -87,7 +116,7 @@ input {
     padding: 30px;
     overflow: auto;
 
-    .items{
+    .items {
       flex: 1;
       overflow: auto;
       margin-bottom: 40px;
@@ -100,7 +129,8 @@ input {
         cursor: pointer;
         opacity: 0.5;
       }
-      img:hover{
+
+      img:hover {
         opacity: 1;
       }
 
@@ -188,6 +218,7 @@ input {
           transition: transform 0.1s ease-in-out;
         }
       }
+
       .greenButton {
         color: #FFFFFF;
         font-size: 16px;
@@ -212,9 +243,18 @@ input {
 
     }
 
-
+    .cartEmpty {
+      text-align: center;
+      p {
+        width: 280px;
+        line-height: 24px;
+      }
+    }
   }
+}
 
+.EmptyPage {
+  margin: 5% auto;
 
 }
 
