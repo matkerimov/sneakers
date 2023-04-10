@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {createContext, useEffect, useState} from "react";
 import axios from "axios";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
@@ -7,6 +7,8 @@ import Drawer from "./components/Drawer/Drawer";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 import Orders from "./pages/Orders";
+
+export const AppContext = createContext({});
 
 function App() {
     const [sneakers, setSneakers] = useState([])
@@ -103,49 +105,54 @@ function App() {
         setSearch(event.target.value)
     }
 
+    const isItemAdded = (id) => {
+        return cartSneakers.some((obj) => Number(obj.id) === Number(id))
+    }
+
 
     return (
-        <div className="App clear">
-            {cartOpen && <Drawer sneakers={cartSneakers}
-                                 setsetCartOpen={setCartOpen}
-                                 onClose={() => setCartOpen(false)}
-                                 onRemove={onRemoveItem}
-            />}
-            <Router>
+        <AppContext.Provider value={{sneakers, cartSneakers, favorites, isItemAdded}}>
+            <div className="App clear">
+                {cartOpen && <Drawer sneakers={cartSneakers}
+                                     setsetCartOpen={setCartOpen}
+                                     onClose={() => setCartOpen(false)}
+                                     onRemove={onRemoveItem}
+                />}
+                <Router>
 
-                <Header onClickCart={() => setCartOpen(true)}/>
+                    <Header onClickCart={() => setCartOpen(true)}/>
 
-                <Routes>
+                    <Routes>
 
-                    <Route path="/" element={
-                        <Home
+                        <Route path="/" element={
+                            <Home
 
-                            sneakers={sneakers}
-                            cartSneakers={cartSneakers}
-                            search={search}
-                            setSearch={setSearch}
-                            onChangeSearchInput={onChangeSearchInput}
-                            onAddToFavorite={onAddToFavorite}
-                            onAddToCart={onAddToCart}
-                            isLoading={isLoading}
-                        />
-                    }/>
+                                sneakers={sneakers}
+                                cartSneakers={cartSneakers}
+                                search={search}
+                                setSearch={setSearch}
+                                onChangeSearchInput={onChangeSearchInput}
+                                onAddToFavorite={onAddToFavorite}
+                                onAddToCart={onAddToCart}
+                                isLoading={isLoading}
+                            />
+                        }/>
 
-                    <Route path="favorites" element={
-                        <Favorites
-                            sneakers={sneakers}
-                            favorites={favorites}
-                            onRemoveFavorite={onAddToFavorite}
-                        />
-                    }/>
-                    <Route path="orders" element={<Orders/>}/>
+                        <Route path="favorites" element={
+                            <Favorites
+                                onRemoveFavorite={onAddToFavorite}
+                            />
+                        }/>
+                        <Route path="orders" element={<Orders/>}/>
 
-                </Routes>
+                    </Routes>
 
-            </Router>
+                </Router>
 
 
-        </div>
+            </div>
+        </AppContext.Provider>
+
     );
 }
 

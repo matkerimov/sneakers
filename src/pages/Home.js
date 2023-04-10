@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Card from "../components/Card/index.js";
+import {AppContext} from "../App";
 
 const Home = ({
                   sneakers,
@@ -12,6 +13,7 @@ const Home = ({
                   isLoading
               }) => {
 
+const {isItemAdded} = useContext(AppContext)
 
     const renderItems  = () => {
         const filteredItems = sneakers.filter((item) =>
@@ -22,7 +24,7 @@ const Home = ({
                 key={index}
                 onFavorite={(obj) => onAddToFavorite(obj)}
                 onPlus={(obj) => onAddToCart(obj)}
-                added={cartSneakers.some((obj) => Number(obj.id) === Number(item.id))}
+                added={isItemAdded(item && item.id)}
                 // some говорит если хотябы одно услови совпало то он вернет tr
                 loading={isLoading}
                 {...item}

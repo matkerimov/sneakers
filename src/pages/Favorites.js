@@ -1,8 +1,10 @@
 import React from 'react';
 import Card from "../components/Card/index.js";
 import {Link} from "react-router-dom";
+import {AppContext} from "../App"
 
-const Favorites = ({ favorites, onRemoveFavorite, onClose}) => {
+const Favorites = ({onRemoveFavorite, onClose}) => {
+    const {favorites} = React.useContext(AppContext)
     return (
         <div className="content p-40 ">
                 <h1 className="mb-40">Favorites</h1>
