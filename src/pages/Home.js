@@ -4,7 +4,7 @@ import {AppContext} from "../App";
 
 const Home = ({
                   sneakers,
-                  cartSneakers,
+                  // cartSneakers,
                   search,
                   setSearch,
                   onChangeSearchInput,
@@ -13,7 +13,7 @@ const Home = ({
                   isLoading
               }) => {
 
-const {isItemAdded} = useContext(AppContext)
+// const {isItemAdded} = useContext(AppContext)
 
     const renderItems  = () => {
         const filteredItems = sneakers.filter((item) =>
@@ -24,7 +24,7 @@ const {isItemAdded} = useContext(AppContext)
                 key={index}
                 onFavorite={(obj) => onAddToFavorite(obj)}
                 onPlus={(obj) => onAddToCart(obj)}
-                added={isItemAdded(item && item.id)}
+                // added={isItemAdded(item && item.id)}
                 // some говорит если хотябы одно услови совпало то он вернет tr
                 loading={isLoading}
                 {...item}

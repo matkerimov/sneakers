@@ -3,8 +3,8 @@ import Card from "../components/Card/index.js";
 import {Link} from "react-router-dom";
 import {AppContext} from "../App"
 
-const Favorites = ({onRemoveFavorite, onClose}) => {
-    const {favorites} = React.useContext(AppContext)
+const Favorites = ({onClose}) => {
+    const {favorites, onAddToFavorite} = React.useContext(AppContext)
     return (
         <div className="content p-40 ">
                 <h1 className="mb-40">Favorites</h1>
@@ -17,7 +17,7 @@ const Favorites = ({onRemoveFavorite, onClose}) => {
                                     <Card
                                         key={index}
                                         favorited={true}
-                                        onFavorite={onRemoveFavorite}
+                                        onFavorite={onAddToFavorite}
                                         {...item}
                                     />
                                 ))

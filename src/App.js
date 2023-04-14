@@ -37,6 +37,7 @@ function App() {
             const itemsResponse = await axios.get("https://run.mocky.io/v3/cb675bfc-fecb-4c33-91bf-bfe4734ea112")
 
 
+
             setIsLoading(false)
             setCartSneakers(cartResponse.data)
             setFavorites(favoriteResponse.data)
@@ -52,16 +53,14 @@ function App() {
     const onAddToCart = (obj) => {
         // Если в корзине cartSneakers хотябы один item, имеет такой же id,
         // как и у obj при нажатии на кнопку плюс, то удали этот элемент
-        console.log(obj)
+
         if (cartSneakers.find((item) => Number(item.id) === Number(obj.id))) {
             axios.delete(`https://613cea45270b96001798b2e8.mockapi.io/cart/${obj.id}`)
-            setCartSneakers(prev => prev.filter(el => Number(el.id) === Number(obj.id)))
+            setCartSneakers(prev => prev.filter(el => Number(el.id) !== Number(obj.id)))
         } else {
             axios.post("https://613cea45270b96001798b2e8.mockapi.io/cart", obj)
             setCartSneakers(prev => [...prev, obj])
-
         }
-
     }
 
     const onRemoveItem = (id) => {
@@ -105,16 +104,29 @@ function App() {
         setSearch(event.target.value)
     }
 
+
+
+    // В стаэйте cartSneakers хронятся все данные Корзины
+    // isItemAdded будет проверять,
+    // если хотябы один id который тебе передали есть в Корзине среди оъектов то выдавай мне true
+    // иначе выводи false
     const isItemAdded = (id) => {
         return cartSneakers.some((obj) => Number(obj.id) === Number(id))
     }
 
+    const isItemFavorited = (id) => {
+        return favorites.some((obj) => Number(obj.id) === Number(id))
+    }
+
 
     return (
-        <AppContext.Provider value={{sneakers, cartSneakers, favorites, isItemAdded}}>
+        // Здесь мы говорим
+        // Все наше приложение ты будешь знать что теперь через AppContext ты можешь выташить
+        //                           ▼ вот эти пропсы
+        <AppContext.Provider
+            value={{sneakers, cartSneakers, favorites, isItemAdded, onAddToFavorite, setCartOpen, setCartSneakers, isItemFavorited}}>
             <div className="App clear">
                 {cartOpen && <Drawer sneakers={cartSneakers}
-                                     setsetCartOpen={setCartOpen}
                                      onClose={() => setCartOpen(false)}
                                      onRemove={onRemoveItem}
                 />}
@@ -126,7 +138,6 @@ function App() {
 
                         <Route path="/" element={
                             <Home
-
                                 sneakers={sneakers}
                                 cartSneakers={cartSneakers}
                                 search={search}
@@ -140,7 +151,7 @@ function App() {
 
                         <Route path="favorites" element={
                             <Favorites
-                                onRemoveFavorite={onAddToFavorite}
+                                // onAddToFavorite={onAddToFavorite}
                             />
                         }/>
                         <Route path="orders" element={<Orders/>}/>
