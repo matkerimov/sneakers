@@ -31,17 +31,24 @@ function App() {
         // })
 
         async function fetchData() {
+            // Как работает Promise.all?
+            // Promise.all - это массив Промисов
+            // Promise.all будет выполнять каждый из промисов и рещъзультат выплнения вернет ввиде массива
+            try {
+                const [cartResponse, favoriteResponse, itemsResponse] = await Promise.all([
+                    await axios.get("https://613cea45270b96001798b2e8.mockapi.io/cart"), // <= это промис
+                    await axios.get("https://613cea45270b96001798b2e8.mockapi.io/favorite"),
+                    await axios.get("https://run.mocky.io/v3/cb675bfc-fecb-4c33-91bf-bfe4734ea112"),
+                ])
 
-            const cartResponse = await axios.get("https://613cea45270b96001798b2e8.mockapi.io/cart")
-            const favoriteResponse = await axios.get("https://613cea45270b96001798b2e8.mockapi.io/favorite")
-            const itemsResponse = await axios.get("https://run.mocky.io/v3/cb675bfc-fecb-4c33-91bf-bfe4734ea112")
-
-
-
-            setIsLoading(false)
-            setCartSneakers(cartResponse.data)
-            setFavorites(favoriteResponse.data)
-            setSneakers(itemsResponse.data)
+                setIsLoading(false)
+                setCartSneakers(cartResponse.data)
+                setFavorites(favoriteResponse.data)
+                setSneakers(itemsResponse.data)
+            } catch (error) {
+                alert("Ошибка при запросе данных :(")
+                console.log(error)
+            }
 
 
         }
@@ -50,24 +57,48 @@ function App() {
     }, [])
 
 
-    const onAddToCart = (obj) => {
+    const onAddToCart = async (obj) => {
         // Если в корзине cartSneakers хотябы один item, имеет такой же id,
         // как и у obj при нажатии на кнопку плюс, то удали этот элемент
 
-        if (cartSneakers.find((item) => Number(item.id) === Number(obj.id))) {
-            axios.delete(`https://613cea45270b96001798b2e8.mockapi.io/cart/${obj.id}`)
-            setCartSneakers(prev => prev.filter(el => Number(el.id) !== Number(obj.id)))
-        } else {
-            axios.post("https://613cea45270b96001798b2e8.mockapi.io/cart", obj)
-            setCartSneakers(prev => [...prev, obj])
+        try {
+            const findItem = cartSneakers.find((item) => Number(item.parentId) === Number(obj.id))
+            if (findItem) {
+                setCartSneakers(prev => prev.filter(el => Number(el.parentId) !== Number(obj.id)))
+                await axios.delete(`https://613cea45270b96001798b2e8.mockapi.io/cart/${findItem.id}`)
+            } else {
+                setCartSneakers(prev => [...prev, obj])
+                const {data} = await axios.post("https://613cea45270b96001798b2e8.mockapi.io/cart", obj)
+                setCartSneakers((prev) =>
+                    prev.map((item) => {
+                        if (item.parentId === data.parentId) {
+                            return {
+                                ...item,
+                                id: data.id,
+                            };
+                        }
+                        return item;
+                    }),
+                );
+            }
+        }catch (error) {
+            alert("Ошибка при добавлении в корзину :(")
+            console.log(error)
         }
+
+
     }
 
     const onRemoveItem = (id) => {
-        console.log(id)
-        axios.delete(`https://613cea45270b96001798b2e8.mockapi.io/cart/${id}`).then(res => {
-            setCartSneakers(prev => prev.filter(item => item.id !== id))
-        });
+        try {
+            axios.delete(`https://613cea45270b96001798b2e8.mockapi.io/cart/${id}`).then(res => {
+                setCartSneakers(prev => prev.filter(item => Number(item.id) !== Number(id)))
+            });
+        } catch (error) {
+            alert("Ошибка при удалении из корзины :(")
+            console.log(error)
+        }
+
     }
 
     // // При выполнении этого метода
@@ -94,8 +125,9 @@ function App() {
             }
             //    Если код ▲ не выполнится
             //    catch ловит ошибку и говорит то что внутри {}
-        } catch (e) {
+        } catch (error) {
             alert("Не удалось добавить в фавориты")
+            console.log(error)
         }
     }
 
@@ -104,19 +136,19 @@ function App() {
         setSearch(event.target.value)
     }
 
-
-
     // В стаэйте cartSneakers хронятся все данные Корзины
     // isItemAdded будет проверять,
     // если хотябы один id который тебе передали есть в Корзине среди оъектов то выдавай мне true
     // иначе выводи false
     const isItemAdded = (id) => {
-        return cartSneakers.some((obj) => Number(obj.id) === Number(id))
+        return cartSneakers.some((obj) => Number(obj.parentId) === Number(id))
     }
 
     const isItemFavorited = (id) => {
         return favorites.some((obj) => Number(obj.id) === Number(id))
     }
+
+    const totalPrice = cartSneakers.reduce((prev, obj) => obj.price + prev, 0)
 
 
     return (
@@ -124,7 +156,11 @@ function App() {
         // Все наше приложение ты будешь знать что теперь через AppContext ты можешь выташить
         //                           ▼ вот эти пропсы
         <AppContext.Provider
-            value={{sneakers, cartSneakers, favorites, isItemAdded, onAddToFavorite, setCartOpen, setCartSneakers, isItemFavorited}}>
+            value={
+                {sneakers, cartSneakers,
+                    favorites, isItemAdded,
+                    onAddToFavorite, setCartOpen,
+                    setCartSneakers, isItemFavorited, totalPrice}}>
             <div className="App clear">
                 {cartOpen && <Drawer sneakers={cartSneakers}
                                      onClose={() => setCartOpen(false)}

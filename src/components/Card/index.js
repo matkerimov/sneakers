@@ -4,19 +4,18 @@ import styles from "./Card.module.scss"
 import {AppContext} from "../../App";
 
 
-const Card = ({id, image, title, price, onPlus, onFavorite,  loading = false }) => {
+const Card = ({id, image, title, price, onPlus, onFavorite, favorited = false, loading = false }) => {
 
     const {isItemAdded, isItemFavorited} = useContext(AppContext)
-    // const [isFavorite, setIsFavorite] = useState(favorited)
-
-    // console.log(title, isItemAdded(id))
+    const [isFavorite, setIsFavorite] = useState(favorited)
+    const obj = {id, parentId: id, title, image, price}
 
     const onClickPlus = () => {
-        onPlus({id, title, image, price})
+        onPlus(obj)
     }
     const onClickHeart = () => {
-        onFavorite({id, title, image, price})
-        // setIsFavorite(!isFavorite)
+        onFavorite(obj)
+        setIsFavorite(!isFavorite)
     }
 
 
@@ -41,9 +40,10 @@ const Card = ({id, image, title, price, onPlus, onFavorite,  loading = false }) 
                     ) : (
                         <>
                             <div className="favorite">
-                                <img onClick={onClickHeart}
-                                     src={isItemFavorited(id) ? "/img/Heart_Active.svg" : "/img/Heart_Inactive.svg"}
-                                     alt="Inactive"/>
+                                {onFavorite &&
+                                    <img onClick={onClickHeart}
+                                      src={isItemFavorited(id) ? "/img/Heart_Active.svg" : "/img/Heart_Inactive.svg"}
+                                      alt="Inactive"/>}
                             </div>
                             <img width={133} height={112} src={image} alt=""/>
                             <h5>{title}</h5>
@@ -52,9 +52,10 @@ const Card = ({id, image, title, price, onPlus, onFavorite,  loading = false }) 
                                     <span>Price:</span>
                                     <b>{price} som</b>
                                 </div>
-                                <img onClick={onClickPlus}
-                                     src={isItemAdded(id) ? "img/Checked.svg" : "img/BorderPlus.svg"}
-                                     alt=""/>
+                                {onPlus &&
+                                    <img onClick={onClickPlus}
+                                      src={isItemAdded(id) ? "img/Checked.svg" : "img/BorderPlus.svg"}
+                                      alt=""/>}
                             </div>
                         </>
 
