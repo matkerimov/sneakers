@@ -3,13 +3,14 @@ import Info from "../Info";
 import {AppContext} from "../../App";
 import axios from "axios";
 
+
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 
-const Drawer = ({onClose, onRemove, sneakers = []}) => {
+const Drawer = ({onClose, onRemove, sneakers = [], opened}) => {
 
     const {cartSneakers, setCartSneakers, totalPrice} = useContext(AppContext)
-    const {orderId, setOrderId} = useState(null)
+    const [orderId, setOrderId] = useState(null)
     const [isOrderComplete, setIsOrderComplete] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
 
@@ -30,6 +31,7 @@ const Drawer = ({onClose, onRemove, sneakers = []}) => {
             }
         } catch (error) {
             alert('Ошибка при создании заказа :(');
+            console.log(error)
         }
         setIsLoading(false);
     };

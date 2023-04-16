@@ -115,6 +115,7 @@ input {
     box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
     padding: 30px;
     overflow: auto;
+    transition: 5s ease-in-out;
 
     .items {
       flex: 1;
@@ -142,14 +143,7 @@ input {
       overflow: hidden;
       padding: 20px;
 
-      //.cartItemImg{
-      //  height: 70px;
-      //  width: 70px;
-      //  background-size: contain;
-      //  background-position: 0 -3px;
-      //  background-repeat: no-repeat;
-      //  margin-right: 20px;
-      //}
+
 
       p {
         font-size: 16px;
@@ -252,6 +246,8 @@ input {
     }
   }
 }
+
+
 
 .EmptyPage {
   margin: 5% auto;

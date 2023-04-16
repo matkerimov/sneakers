@@ -11,6 +11,7 @@ import Orders from "./pages/Orders";
 export const AppContext = createContext({});
 
 function App() {
+    const [opened, setOpened] = useState()
     const [sneakers, setSneakers] = useState([])
     const [cartSneakers, setCartSneakers] = useState([])
     const [favorites, setFavorites] = useState([])
@@ -164,7 +165,7 @@ function App() {
             <div className="App clear">
                 {cartOpen && <Drawer sneakers={cartSneakers}
                                      onClose={() => setCartOpen(false)}
-                                     onRemove={onRemoveItem}
+                                     onRemove={onRemoveItem} opened={cartOpen}
                 />}
                 <Router>
 
