@@ -37,7 +37,7 @@ const Orders = ({onClose}) => {
                 orders.length < 0 ? (
                     <div className="EmptyPage">
                         <div className=" d-flex align-center justify-center flex-column flex">
-                            <img className="mb-20" width="70px" src="./img/Orders.png" alt="Orders"/>
+                            <img className="mb-20" width="70px" src="img/Orders.png" alt="Orders"/>
                             <h2 className="mt-25 mb-15">У вас нет заказов</h2>
                             <p className=" mb-30 opacity-6"> Оформите хотя бы один заказ.</p>
                             <Link to="/">

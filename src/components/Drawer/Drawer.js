@@ -44,7 +44,7 @@ const Drawer = ({onClose, onRemove, sneakers = [], opened}) => {
                 <div className="drawer">
                     <h2 className="mb-30 d-flex justify-between ">
                         Cart
-                        <img onClick={onClose} className="removeBtn" src="/img/Remove_Active.svg"
+                        <img onClick={onClose} className="removeBtn" src="img/Remove_Active.svg"
                              alt="Close"/>
                     </h2>
                     {
@@ -63,7 +63,7 @@ const Drawer = ({onClose, onRemove, sneakers = [], opened}) => {
                                                         <b>{item.price} som</b>
                                                     </div>
                                                     <img className="removeBtn"
-                                                         src="/img/Remove_Active.svg"
+                                                         src="img/Remove_Active.svg"
                                                          alt="RemoveItem"
                                                          onClick={() => onRemove(item.id)}
                                                     />
@@ -88,7 +88,7 @@ const Drawer = ({onClose, onRemove, sneakers = [], opened}) => {
 
                                         <button
                                             disabled={isLoading} onClick={onClickOrder} className="greenButton">
-                                            Order <img src="/img/Arrow.svg" alt="Arrow.svg"/></button>
+                                            Order <img src="img/Arrow.svg" alt="Arrow.svg"/></button>
 
                                     </div>
                                 </div>
@@ -103,7 +103,7 @@ const Drawer = ({onClose, onRemove, sneakers = [], opened}) => {
                                         ? `Ваш заказ #${orderId} скоро будет передан курьерской доставке`
                                         : 'Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.'
                                 }
-                                image={isOrderComplete ? "/img/Order.jpg" : "/img/Empty.png"}
+                                image={isOrderComplete ? "img/Order.jpg" : "img/Empty.png"}
                             />
 
                         )

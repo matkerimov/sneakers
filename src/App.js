@@ -11,7 +11,6 @@ import Orders from "./pages/Orders";
 export const AppContext = createContext({});
 
 function App() {
-    const [opened, setOpened] = useState()
     const [sneakers, setSneakers] = useState([])
     const [cartSneakers, setCartSneakers] = useState([])
     const [favorites, setFavorites] = useState([])
@@ -173,7 +172,7 @@ function App() {
 
                     <Routes>
 
-                        <Route path="/" element={
+                        <Route path="" element={
                             <Home
                                 sneakers={sneakers}
                                 cartSneakers={cartSneakers}

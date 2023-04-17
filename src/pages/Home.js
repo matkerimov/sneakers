@@ -1,10 +1,8 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import Card from "../components/Card/index.js";
-import {AppContext} from "../App";
 
 const Home = ({
                   sneakers,
-                  // cartSneakers,
                   search,
                   setSearch,
                   onChangeSearchInput,
@@ -13,7 +11,6 @@ const Home = ({
                   isLoading
               }) => {
 
-// const {isItemAdded} = useContext(AppContext)
 
     const renderItems  = () => {
         const filteredItems = sneakers.filter((item) =>
@@ -38,13 +35,13 @@ const Home = ({
             <div className="d-flex align-center justify-between mb-40">
                 <h1>{search ? `Search by:  ${search}` : "All sneakers"}</h1>
                 <div className="search-block d-flex">
-                    <img src="/img/Search.svg" alt="Search"/>
+                    <img src="img/Search.svg" alt="Search"/>
                     <input onChange={onChangeSearchInput} value={search} placeholder="Search..."/>
                     {
                         search && (
                             <img onClick={() => setSearch('')}
                                  className="clear cu-p"
-                                 src="/img/Remove_Active.svg"
+                                 src="img/Remove_Active.svg"
                                  alt="Close"/>
 
                         )
