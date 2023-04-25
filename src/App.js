@@ -172,7 +172,7 @@ function App() {
 
                     <Routes>
 
-                        <Route path="" element={
+                        <Route path="sneakers" element={
                             <Home
                                 sneakers={sneakers}
                                 cartSneakers={cartSneakers}
