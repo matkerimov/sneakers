@@ -40,7 +40,7 @@ const Orders = ({onClose}) => {
                             <img className="mb-20" width="70px" src="img/Orders.png" alt="Orders"/>
                             <h2 className="mt-25 mb-15">У вас нет заказов</h2>
                             <p className=" mb-30 opacity-6"> Оформите хотя бы один заказ.</p>
-                            <Link to="/">
+                            <Link to="sneakers">
                                 <button onClick={onClose} className="greenButtonGoBack">
                                     <img src="img/arrow.svg" alt="Arrow"/>
                                     Вернуться назад

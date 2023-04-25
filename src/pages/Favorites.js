@@ -29,7 +29,7 @@ const Favorites = ({onClose}) => {
                                 <img className="mb-20" width="70px" src="img/Favorites.png" alt="Orders"/>
                                 <h2 className="mt-25 mb-15">Закладок нет :(</h2>
                                 <p className=" mb-30 opacity-6">Вы ничего не добавляли в закладки</p>
-                                <Link to="/">
+                                <Link to="sneakers">
                                     <button onClick={onClose} className="greenButtonGoBack">
                                         <img src="img/arrow.svg" alt="Arrow"/>
                                         Вернуться назад
