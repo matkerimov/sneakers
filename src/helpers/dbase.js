@@ -3,7 +3,7 @@
 const dbase = [
     {
         "title": "Мужские Кроссовки Nike Blazer Mid Suede",
-        "image": "/img/sneakers1.jpg",
+        "image": "img/sneakers1.jpg",
         "price": 10927,
         "favorite": false,
         "added": false,
@@ -11,7 +11,7 @@ const dbase = [
     },
     {
         "title": "Мужские Кроссовки Nike Air Max 270",
-        "image": "/img/sneakers2.jpg",
+        "image": "img/sneakers2.jpg",
         "price": 13987,
         "favorite": false,
         "added": false,
@@ -19,7 +19,7 @@ const dbase = [
     },
     {
         "title": "Мужские Кроссовки Nike Blazer Mid Suede",
-        "image": "/img/sneakers3.jpg",
+        "image": "img/sneakers3.jpg",
         "price": 10927,
         "favorite": false,
         "added": false,
@@ -27,7 +27,7 @@ const dbase = [
     },
     {
         "title": "Кроссовки Puma X Aka Boku Future Rider",
-        "image": "/img/sneakers4.jpg",
+        "image": "img/sneakers4.jpg",
         "price": 7867,
         "favorite": false,
         "added": false,
@@ -35,7 +35,7 @@ const dbase = [
     },
     {
         "title": "Мужские Кроссовки Under Armour Curry 8",
-        "image": "/img/sneakers5.jpg",
+        "image": "img/sneakers5.jpg",
         "price": 13987,
         "favorite": false,
         "added": false,
@@ -43,7 +43,7 @@ const dbase = [
     },
     {
         "title": "Мужские Кроссовки Nike Kyrie 7",
-        "image": "/img/sneakers6.jpg",
+        "image": "img/sneakers6.jpg",
         "price": 9616,
         "favorite": false,
         "added": false,
@@ -51,7 +51,7 @@ const dbase = [
     },
     {
         "title": "Мужские Кроссовки Jordan Air Jordan 11",
-        "image": "/img/sneakers7.jpg",
+        "image": "img/sneakers7.jpg",
         "price": 11364,
         "favorite": false,
         "added": false,
@@ -59,7 +59,7 @@ const dbase = [
     },
     {
         "title": "Мужские Кроссовки Nike LeBron XVIII",
-        "image": "/img/sneakers8.jpg",
+        "image": "img/sneakers8.jpg",
         "price": 7867,
         "favorite": false,
         "added": false,
@@ -67,7 +67,7 @@ const dbase = [
     },
     {
         "title": "Мужские Кроссовки Nike LeBron XVIII Low",
-        "image": "/img/sneakers9.jpg",
+        "image": "img/sneakers9.jpg",
         "price": 8304,
         "favorite": false,
         "added": false,
@@ -75,7 +75,7 @@ const dbase = [
     },
     {
         "title": "Nike Invincible 3",
-        "image": "/img/sneakers10.png",
+        "image": "img/sneakers10.png",
         "price": 15735,
         "favorite": false,
         "added": false,
@@ -83,7 +83,7 @@ const dbase = [
     },
     {
         "title": "Nike Juniper Trail 2 Next Nature",
-        "image": "/img/sneakers11.png",
+        "image": "img/sneakers11.png",
         "price": 7430,
         "favorite": false,
         "added": false,
@@ -91,7 +91,7 @@ const dbase = [
     },
     {
         "title": "Nike Air Huarache",
-        "image": "/img/sneakers12.png",
+        "image": "img/sneakers12.png",
         "price": 10927,
         "favorite": false,
         "added": false,

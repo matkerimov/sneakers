@@ -38,7 +38,7 @@ function App() {
                 const [cartResponse, favoriteResponse, itemsResponse] = await Promise.all([
                     await axios.get("https://613cea45270b96001798b2e8.mockapi.io/cart"), // <= это промис
                     await axios.get("https://613cea45270b96001798b2e8.mockapi.io/favorite"),
-                    await axios.get("https://run.mocky.io/v3/cb675bfc-fecb-4c33-91bf-bfe4734ea112"),
+                    await axios.get("https://run.mocky.io/v3/73582dc0-cd28-46b8-a966-092d3510fabd"),
                 ])
 
                 setIsLoading(false)

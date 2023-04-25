@@ -21,3 +21,5 @@ const Info = ({title, image, description,}) => {
 };
 
 export default Info;
+
+
